@@ -1,0 +1,22 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: k0s-cluster
+spec:
+  hosts:
+    - ssh:
+        address: 192.168.68.101
+        user: root
+        port: 22
+        keyPath: /path/to/private/key  # Update this with the path to your SSH key
+      role: controller
+    - ssh:
+        address: 192.168.68.102
+        user: root
+        port: 22
+        keyPath: /path/to/private/key  # Update this with the path to your SSH key
+      role: worker
+  k0s:
+    version: "latest"
+    config:
+      path: ./k0s-config.yml
