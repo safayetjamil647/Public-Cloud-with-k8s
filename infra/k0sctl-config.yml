@@ -5,18 +5,23 @@ metadata:
 spec:
   hosts:
     - ssh:
-        address: 192.168.68.101
-        user: root
+        address: 192.168.0.179
+        user: leader
         port: 22
-        keyPath: /path/to/private/key  # Update this with the path to your SSH key
+        keyPath: ~/.ssh/id_rsa  # Update this with the path to your SSH key
       role: controller
     - ssh:
-        address: 192.168.68.102
-        user: root
+        address: 192.168.0.197
+        user: followerone
         port: 22
-        keyPath: /path/to/private/key  # Update this with the path to your SSH key
+        keyPath: ~/.ssh/id_rsa  # Update this with the path to your SSH key
+      role: worker
+    - ssh:
+        address: 192.168.0.187
+        user: followertwo
+        port: 22
+        keyPath: ~/.ssh/id_rsa  # Update this with the path to your SSH key
       role: worker
   k0s:
-    version: "latest"
-    config:
-      path: ./k0s-config.yml
+    version: "v1.29.4+k0s.0"
+
